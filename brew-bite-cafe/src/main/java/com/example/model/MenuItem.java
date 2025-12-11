@@ -64,11 +64,6 @@ public abstract class MenuItem {
         return basePrice;
     }
 
-<<<<<<< HEAD
-        @Override
-        public int hashCode() {
-            return Objects.hash(Id);
-=======
     public Map<String, Double> getBaseIngredientConsumption() {
         return baseIngredientConsumption;
     }
@@ -82,7 +77,6 @@ public abstract class MenuItem {
     public boolean equals(Object object) {
         if (this == object) {
             return true;
->>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
         }
         if (!(object instanceof MenuItem)) {
             return false;
@@ -96,11 +90,4 @@ public abstract class MenuItem {
         return Objects.hash(Id);
     }
 
-
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
+}
