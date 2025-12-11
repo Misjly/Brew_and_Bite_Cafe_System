@@ -63,13 +63,4 @@ public class ProductCatalog {
         return Optional.ofNullable(items.get(Id));
     }
 
-
-
-
-
-
-
-
-
-
 }
