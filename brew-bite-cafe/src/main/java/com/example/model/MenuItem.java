@@ -23,14 +23,30 @@ public abstract class MenuItem {
         if (Id == null || Id.isBlank()) {
             throw new IllegalArgumentException("Id cannot be null or blank");
         }
+<<<<<<< HEAD
+
+        if(name == null || name.isBlank()) {
+=======
         if (name == null || name.isBlank()) {
+>>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
             throw new IllegalArgumentException("Name cannot be null or blank");
         }
+<<<<<<< HEAD
+
+        if(category == null) {
+=======
         if (category == null) {
+>>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
             throw new IllegalArgumentException("Category cannot be null");
         }
+<<<<<<< HEAD
+
+        if(basePrice == null || basePrice.compareTo(BigDecimal.ZERO) < 0 ) {
+            throw new IllegalArgumentException("Base price cannot be null or negative"); 
+=======
         if (basePrice == null || basePrice.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Base price cannot be null or negative");
+>>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
         }
 
         this.Id = Id;
@@ -41,7 +57,7 @@ public abstract class MenuItem {
         if (baseIngredientConsumption == null) {
             this.baseIngredientConsumption = Collections.emptyMap();
         } else {
-            this.baseIngredientConsumption = new HashMap<>(baseIngredientConsumption);
+            this.baseIngredientConsumption = Collections.unmodifiableMap(new HashMap<>(baseIngredientConsumption));
         }
     }
 
@@ -61,6 +77,11 @@ public abstract class MenuItem {
         return basePrice;
     }
 
+<<<<<<< HEAD
+        @Override
+        public int hashCode() {
+            return Objects.hash(Id);
+=======
     public Map<String, Double> getBaseIngredientConsumption() {
         return baseIngredientConsumption;
     }
@@ -74,6 +95,7 @@ public abstract class MenuItem {
     public boolean equals(Object object) {
         if (this == object) {
             return true;
+>>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
         }
         if (!(object instanceof MenuItem)) {
             return false;
@@ -87,4 +109,11 @@ public abstract class MenuItem {
         return Objects.hash(Id);
     }
 
-}
+
+<<<<<<< HEAD
+
+
+
+
+=======
+>>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
