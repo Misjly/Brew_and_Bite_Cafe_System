@@ -1,5 +1,9 @@
+package com.example.model;
+
 import java.math.BigDecimal;
 import java.util.Map;
+
+import com.example.enums.Category;
 
 
 public abstract class MenuItemFactory {

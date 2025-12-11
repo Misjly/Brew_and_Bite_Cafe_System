@@ -1,3 +1,5 @@
+package com.example.model;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -6,10 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.example.enums.Category;
+
 // this is the catalog for all the products that will be available in the cafe
 public class ProductCatalog {
 
-    private Final Map<String, MenuItem> items = new HashMap<>();
+    private final Map<String, MenuItem> items = new HashMap<>();
 
     // this method is adding a new Menu Item to the catalog and if the item Id already exists it is replaced
     public void addItem(MenuItem item) {
@@ -27,7 +31,7 @@ public class ProductCatalog {
     // Removes a Menu Item from the catalog based on the Id
     public void removeItem(String Id) {
         if (Id == null) {
-            thow new IllegalArgumentException("Id cannot be null");
+            throw new IllegalArgumentException("Id cannot be null");
         }
         items.remove(Id);
     }

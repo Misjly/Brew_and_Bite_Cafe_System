@@ -1,8 +1,12 @@
+package com.example.model;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import com.example.enums.Category;
 
 
 public class MenuService {
