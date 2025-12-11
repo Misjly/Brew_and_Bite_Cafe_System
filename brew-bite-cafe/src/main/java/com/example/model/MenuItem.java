@@ -23,30 +23,17 @@ public abstract class MenuItem {
         if (Id == null || Id.isBlank()) {
             throw new IllegalArgumentException("Id cannot be null or blank");
         }
-<<<<<<< HEAD
 
         if(name == null || name.isBlank()) {
-=======
-        if (name == null || name.isBlank()) {
->>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
             throw new IllegalArgumentException("Name cannot be null or blank");
         }
-<<<<<<< HEAD
 
-        if(category == null) {
-=======
-        if (category == null) {
->>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
+        if(category == null ||category.isBlank()) {
             throw new IllegalArgumentException("Category cannot be null");
         }
-<<<<<<< HEAD
 
         if(basePrice == null || basePrice.compareTo(BigDecimal.ZERO) < 0 ) {
             throw new IllegalArgumentException("Base price cannot be null or negative"); 
-=======
-        if (basePrice == null || basePrice.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Base price cannot be null or negative");
->>>>>>> 96c0dbff8d9e49f604820eb257769a4f8c235abf
         }
 
         this.Id = Id;
