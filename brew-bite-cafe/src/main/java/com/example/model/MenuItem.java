@@ -28,7 +28,7 @@ public abstract class MenuItem {
             throw new IllegalArgumentException("Name cannot be null or blank");
         }
 
-        if(category == null ||category.isBlank()) {
+        if(category == null) {
             throw new IllegalArgumentException("Category cannot be null");
         }
 
@@ -89,5 +89,5 @@ public abstract class MenuItem {
     public int hashCode() {
         return Objects.hash(Id);
     }
+        }
 
-}
