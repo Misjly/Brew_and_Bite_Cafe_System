@@ -120,19 +120,25 @@ public class InventoryService {
     }
     
     /**
-     * Consumes ingredients from inventory for a given recipe/order.
+     * Consumes ingredients from inventory for a given order.
      * Validates all inputs before consuming. Returns false if any
      * ingredient is invalid, not found, or has insufficient stock.
      *
-     * @param ingredientAmounts map of ingredient names to amounts needed
+     * @param order the order to consume ingredients for
      * @return true if ingredients were successfully consumed, false otherwise
      */
-    public boolean consumeFor(Map<String, Double> ingredientAmounts) {
-        if (ingredientAmounts == null || ingredientAmounts.isEmpty()) {
+    public boolean consumeFor(Order order) {
+        if (order == null) {
             return false;
         }
         
         try {
+            Map<String, Double> ingredientAmounts = order.getRequiredIngredients();
+            
+            if (ingredientAmounts == null || ingredientAmounts.isEmpty()) {
+                return false;
+            }
+            
             // Validate all ingredients and amounts
             for (Map.Entry<String, Double> entry : ingredientAmounts.entrySet()) {
                 String ingredientName = entry.getKey();
