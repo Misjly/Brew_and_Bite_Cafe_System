@@ -20,7 +20,7 @@ public class OrderService {
 
 
     public boolean canPlaceOrder(Order order) {
-        return inventory.canFulfill(order);
+        return InventoryService.canFulfill(order);
     }
 
     public void placeOrder(Order order) {

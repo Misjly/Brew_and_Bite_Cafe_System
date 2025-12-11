@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -135,7 +137,7 @@ public class InventoryService {
         }
         
         try {
-            Map<String, Double> ingredientAmounts = order.getRequiredIngredients();
+            Map<String, Double> ingredientAmounts = getRequiredIngredients(order);
             
             if (ingredientAmounts == null || ingredientAmounts.isEmpty()) {
                 return false;
@@ -179,6 +181,69 @@ public class InventoryService {
         }
     }
     
+    
+    /**
+     * Gets the required ingredients for an order.
+     * Calculates by aggregating ingredients from all order items and their customizations.
+     *
+     * @param order the order to get required ingredients for
+     * @return map of ingredient names to required quantities
+     */
+    public Map<String, Double> getRequiredIngredients(Order order) {
+        Map<String, Double> required = new HashMap<>();
+        
+        if (order == null) {
+            return required;
+        }
+        
+        try {
+            List<OrderItem> items = order.getItems();
+            if (items == null || items.isEmpty()) {
+                return required;
+            }
+            
+            // Loop through each order item
+            for (OrderItem item : items) {
+                MenuItem product = item.getProduct();
+                int quantity = item.getQuantity();
+                
+                if (product == null || quantity <= 0) {
+                    continue;
+                }
+                
+                // Get base ingredients from the menu item
+                Map<String, Double> baseIngredients = product.getBaseIngredientConsumption();
+                if (baseIngredients != null) {
+                    for (Map.Entry<String, Double> entry : baseIngredients.entrySet()) {
+                        String ingredientName = entry.getKey();
+                        Double amount = entry.getValue() * quantity;
+                        required.merge(ingredientName, amount, Double::sum);
+                    }
+                }
+                
+                // Add extra ingredients from customizations
+                List<CustomizationOption> customizations = item.getCustomizations();
+                if (customizations != null) {
+                    for (CustomizationOption customization : customizations) {
+                        Map<String, Double> extraIngredients = customization.getExtraIngredientConsumption();
+                        if (extraIngredients != null) {
+                            for (Map.Entry<String, Double> entry : extraIngredients.entrySet()) {
+                                String ingredientName = entry.getKey();
+                                Double amount = entry.getValue() * quantity;
+                                required.merge(ingredientName, amount, Double::sum);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            return required;
+            
+        } catch (Exception e) {
+            return new HashMap<>();
+        }
+    }
+    
     /**
      * Checks if the inventory has the required ingredients for an order.
      * Does not modify inventory.
@@ -192,7 +257,7 @@ public class InventoryService {
         }
         
         try {
-            Map<String, Double> requiredIngredients = order.getRequiredIngredients();
+            Map<String, Double> requiredIngredients = getRequiredIngredients(order);
             
             if (requiredIngredients == null || requiredIngredients.isEmpty()) {
                 return true;
