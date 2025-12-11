@@ -1,10 +1,7 @@
+package com.example.model;
+
 import java.util.Map;
 import java.util.Objects;
-
-import com.example.model.Ingredient;
-import com.example.model.IngredientStock;
-import com.example.model.Inventory;
-import com.example.model.Order;
 
 public class InventoryService {
     
