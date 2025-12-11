@@ -1,14 +1,6 @@
 package com.example.model;
 import java.util.Objects;
 
-/**
- * IngredientStock
- *
- * Represents a stock record that links an ingredient with its available quantity.
- * Provides methods to increase and decrease the quantity.
- * 
- * @author Kofi
- */
 public class IngredientStock {
     
     private final Ingredient ingredient;

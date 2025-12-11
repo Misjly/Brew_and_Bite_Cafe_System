@@ -1,15 +1,6 @@
-package com.example.model;
 import java.util.Map;
 import java.util.Objects;
 
-/**
- * InventoryService
- *
- * Service layer that manages inventory operations and business logic.
- * Handles adding stock, consuming ingredients, and checking fulfillment.
- * 
- * @author Kofi
- */
 public class InventoryService {
     
     private final Inventory inventory;
@@ -181,13 +172,13 @@ public class InventoryService {
     }
     
     /**
-     * Checks if the inventory can fulfill an order.
+     * Checks if the inventory has the required ingredients for an order.
      * Does not modify inventory.
      *
-     * @param order the order to check
+     * @param order the order to check required ingredients for
      * @return true if all ingredients are available in sufficient quantities, false otherwise
      */
-    public boolean canFulfill(Order order) {
+    public boolean hasRequiredIngredients(Order order) {
         if (order == null) {
             return false;
         }
@@ -217,6 +208,25 @@ public class InventoryService {
             
             return true;
             
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    /**
+     * Checks if the inventory can fulfill an order.
+     * Does not modify inventory.
+     *
+     * @param order the order to check
+     * @return true if all ingredients are available in sufficient quantities, false otherwise
+     */
+    public boolean canFulfill(Order order) {
+        if (order == null) {
+            return false;
+        }
+        
+        try {
+            return hasRequiredIngredients(order);
         } catch (Exception e) {
             return false;
         }

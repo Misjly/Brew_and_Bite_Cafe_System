@@ -2,14 +2,6 @@ package com.example.model;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Inventory
- *
- * Data structure that holds ingredient stocks.
- * Uses a HashMap for O(1) lookup performance.
- * 
- * @author Kofi
- */
 public class Inventory {
     
     /**
