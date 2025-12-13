@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="CustomerItemDetailController">
+    <Label fx:id="itemNameLabel" text="Item Name"/>
+    <Label fx:id="ingredientLabel" text="Ingredients"/>
+    <Label fx:id="costLabel" text="Cost"/>
+    <HBox spacing="10">
+        <Button text="Cancel" onAction="#handleCancel"/>
+        <Button text="Confirm" onAction="#handleConfirm"/>
+    </HBox>
+</VBox>

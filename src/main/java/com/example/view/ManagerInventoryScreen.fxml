@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ManagerInventoryController">
+    <Label text="Inventory"/>
+    <TableView fx:id="inventoryTable"/>
+    <HBox spacing="10">
+        <Label text="Amount:"/>
+        <TextField fx:id="amountField"/>
+    </HBox>
+    <Button text="Restock" onAction="#handleRestock"/>
+</VBox>

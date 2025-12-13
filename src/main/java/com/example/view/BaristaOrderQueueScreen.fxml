@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="BaristaController">
+    <Label text="Order Queue"/>
+    <ListView fx:id="orderList"/>
+    <Button text="Change Status →" onAction="#handleStatusChange"/>
+    <Button text="Complete Order" onAction="#handleCompleteOrder"/>
+</VBox>
