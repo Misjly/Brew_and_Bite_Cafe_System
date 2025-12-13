@@ -8,11 +8,11 @@ i. Three use cases for UML sequence diagram
 
 ii. Three UML Sequence Diagrams
 
-- All images will be included in .zip file
+- Three UML sequence diagrams show the senquencing of the use cases.
 
 iii. Activity Diagram
 
-- Image will be included in .zip file
+- Activity diagram will show the flow.
 
 iv.
 
@@ -23,3 +23,4 @@ iv.
 - For the "Manager Restocks Inventory" sequence diagram, I used a similar structure. The InventoryService handles all the logic, the InventoryRepository interacts with the stored data, and the AuditLog keeps track of restock events that occur. Adding the AuditLog is good design practice and works for this because it separates logging from the actual business operations, which keeps the core code cleaner and easier to maintain.
 
 - For the activity diagram, I focused on showing the overall workflow of placing an order, including the decisions and possible failure points. This makes the process easier to understand at a high level. The diagram shows the logical path the system follows-validating items, checking availability, handling payment, and confirming the order. This demonstrates how the workflow connects to the steps shown in the sequence diagram but in a simpler, more narrative style.
+
