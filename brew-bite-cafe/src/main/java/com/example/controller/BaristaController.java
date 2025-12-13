@@ -1,19 +1,38 @@
-package com.example.controller;
+package controller;
 
-import com.example.model.Observer;
-import com.example.model.OrderModel;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import model.Observer;
+import model.OrderQueue;
 
 public class BaristaController implements Observer {
 
-    private OrderModel orderModel;
+    @FXML
+    private ListView<String> orderList;
 
-    public BaristaController() {}
+    private OrderQueue orderQueue;
+
+    public BaristaController() {
+        orderQueue = OrderQueue.getInstance();
+        orderQueue.registerObserver(this);
+    }
 
     @Override
     public void update() {
-        // refresh barista queue display
+        orderList.getItems().setAll(orderQueue.getOrders());
     }
 
-    public void handleStatusChange(){}
-    public void handleCompleteOrder(){}
+    public void handleStatusChange() {
+        String order = orderList.getSelectionModel().getSelectedItem();
+        if (order != null) {
+            orderQueue.advanceStatus(order);
+        }
+    }
+
+    public void handleCompleteOrder() {
+        String order = orderList.getSelectionModel().getSelectedItem();
+        if (order != null) {
+            orderQueue.completeOrder(order);
+        }
+    }
 }
