@@ -1,9 +1,9 @@
-package controller;
+package com.example.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import model.Observer;
-import model.OrderQueue;
+import com.example.model.Observer;
+import com.example.model.OrderQueue;
 
 public class BaristaController implements Observer {
 
