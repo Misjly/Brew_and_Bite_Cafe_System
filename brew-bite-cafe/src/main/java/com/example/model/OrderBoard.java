@@ -57,4 +57,13 @@ public class OrderBoard {
     public List<Order> getFulfilledOrders() {
         return Collections.unmodifiableList(new ArrayList<>(fulfilledOrders));
     }
+
+    public void addFulfilled(Order order) {
+    if (order == null) {
+        throw new IllegalArgumentException("Order must not be null");
+    }
+    order.setStatus(OrderStatus.FULFILLED);
+    fulfilledOrders.add(order);
+}
+
 }
