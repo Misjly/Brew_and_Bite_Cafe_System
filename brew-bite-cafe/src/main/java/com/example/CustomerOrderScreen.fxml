@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="CustomerController">
+    <left>
+        <VBox spacing="10">
+            <Button text="Beverages" onAction="#showBeverages"/>
+            <Button text="Pastries" onAction="#showPastries"/>
+            <ListView fx:id="itemList"/>
+            <HBox spacing="5">
+                <Label text="Size:"/>
+                <ChoiceBox fx:id="sizeBox"/>
+            </HBox>
+            <Button text="Add" onAction="#handleAddItem"/>
+        </VBox>
+    </left>
+    <center>
+        <VBox spacing="10">
+            <Label text="Current Order"/>
+            <ListView fx:id="currentOrderList"/>
+            <Button text="Proceed with order" onAction="#handleSubmitOrder"/>
+            <Button text="Clear order" onAction="#handleClearOrder"/>
+        </VBox>
+    </center>
+</BorderPane>

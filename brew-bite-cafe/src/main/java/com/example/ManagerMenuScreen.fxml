@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ManagerMenuController">
+    <left>
+        <VBox spacing="10">
+            <Label text="Menu Items"/>
+            <ListView fx:id="menuList"/>
+            <Button text="Add" onAction="#handleAdd"/>
+            <Button text="Edit" onAction="#handleEdit"/>
+            <Button text="Remove" onAction="#handleRemove"/>
+        </VBox>
+    </left>
+</BorderPane>
