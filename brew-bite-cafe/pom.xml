@@ -9,9 +9,21 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
     </properties>
+
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.11.0</version>
+          <configuration>
+            <release>21</release>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
 
     <dependencies>
     <!--  Gson: Java to JSON conversion -->
@@ -20,6 +32,17 @@
       <artifactId>gson</artifactId>
       <version>2.13.2</version>
       <scope>compile</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>11.0.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>11.0.2</version>
     </dependency>
     </dependencies>
 

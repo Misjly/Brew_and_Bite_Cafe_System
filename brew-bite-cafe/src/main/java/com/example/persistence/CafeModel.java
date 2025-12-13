@@ -1,8 +1,4 @@
 package com.example.persistence;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
@@ -11,12 +7,35 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import com.example.enums.BeverageSize;
+import com.example.enums.Category;
+import com.example.enums.OrderStatus;
+import com.example.model.AuthService;
+import com.example.model.CustomizationOption;
+import com.example.model.Ingredient;
+import com.example.model.IngredientStock;
+import com.example.model.InventoryService;
+import com.example.model.MenuItem;
+import com.example.model.MenuService;
+import com.example.model.Order;
+import com.example.model.OrderBoard;
+import com.example.model.OrderItem;
+import com.example.model.OrderService;
+import com.example.model.ProductCatalog;
+import com.example.model.UserAccount;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 
-public class CafeModel(
+public class CafeModel {
     private final AuthService authService;
-    private final Inventory inventory;
     private final InventoryService inventoryService;
     private final ProductCatalog catalog;
     private final MenuService menuService;
@@ -31,13 +50,12 @@ public class CafeModel(
     private final Path ordersFile;
 
 
-    public CafeModel(AuthService authService, Inventory inventory, InventoryService inventoryService, ProductCatalog catalog, MenuService menuService, OrderBoard orderBoard, OrderService orderService, Path usersFile, Path inventoryFile, Path catalogFile, Path ordersFile) {
-        if(authService == null || inventory == null || inventoryService == null || catalog == null || menuService == null || orderBoard == null || orderService == null) {
+    public CafeModel(AuthService authService, InventoryService inventoryService, ProductCatalog catalog, MenuService menuService, OrderBoard orderBoard, OrderService orderService, Path usersFile, Path inventoryFile, Path catalogFile, Path ordersFile) {
+        if(authService == null || inventoryService == null || catalog == null || menuService == null || orderBoard == null || orderService == null) {
             throw new IllegalArgumentException("All services and domain objects must not be null");
         }
 
         this.authService = authService;
-        this.inventory = inventory;
         this.inventoryService = inventoryService;
         this.catalog = catalog;
         this.menuService = menuService;
@@ -94,7 +112,7 @@ public class CafeModel(
         return orderBoard.getPendingOrders();
     }
 
-    lic List<Order> getFulfilledOrders() {
+    public List<Order> getFulfilledOrders() {
         return orderBoard.getFulfilledOrders();
     }
 
@@ -122,7 +140,7 @@ public class CafeModel(
         saveUsers();
         saveInventory();
         saveCatalog();
-        saveOrder();
+        saveOrders();
     }
 
     private void saveUsers() throws IOException {
@@ -131,7 +149,7 @@ public class CafeModel(
         Map<String, UserAccount> accounts = authService.getAccounts();
 
         try(Writer writer = Files.newBufferedWriter(usersFile)) {
-            gson.toJson(accountss, writer);
+            gson.toJson(accounts, writer);
         }
     }
     
@@ -193,7 +211,7 @@ public class CafeModel(
     private void loadCatalog() throws IOException {
         if (catalogFile == null || !Files.exists(catalogFile)) return;
 
-        Type type = new TypeToken<List<MenuItemDtO>>() {}.getType();
+        Type type = new TypeToken<List<MenuItemDTO>>() {}.getType();
         try (Reader reader = Files.newBufferedReader(catalogFile)) {
             List<MenuItemDTO> dtoList = gson.fromJson(reader, type);
             if (dtoList != null){
@@ -315,7 +333,7 @@ public class CafeModel(
                     MenuItem product = catalog.findById(i.productId).orElseThrow(() -> new IllegalStateException("Unkown product id in saved order:" + i.productId));
                     List<CustomizationOption> customizations = new ArrayList<>();
 
-                    OrderItem rebuilt = new ORderItem(product, i.quantity, i.size, customizations);
+                    OrderItem rebuilt = new OrderItem(product, i.quantity, i.size, customizations);
                     rebuiltItems.add(rebuilt);
                 }
             }
@@ -342,5 +360,4 @@ public class CafeModel(
             return dto;
         }
     }
-)
-
+}
