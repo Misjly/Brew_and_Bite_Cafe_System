@@ -9,9 +9,9 @@ public class OrderQueue {
 
     private static OrderQueue instance;
 
-    private Queue<String> orders;
-    private List<String> currentOrder;
-    private List<Observer> observers;
+    private final Queue<String> orders;
+    private final List<String> currentOrder;
+    private final List<Observer> observers;
 
     private OrderQueue() {
         orders = new LinkedList<>();
@@ -36,8 +36,7 @@ public class OrderQueue {
         }
     }
 
-    // Customer actions
-    public void addItem(String item) {
+    public void addToCurrentOrder(String item) {
         currentOrder.add(item);
         notifyObservers();
     }
@@ -51,7 +50,7 @@ public class OrderQueue {
         notifyObservers();
     }
 
-    public void submitOrder() {
+    public void submitCurrentOrder() {
         if (!currentOrder.isEmpty()) {
             orders.add(String.join(", ", currentOrder));
             currentOrder.clear();
@@ -59,12 +58,12 @@ public class OrderQueue {
         }
     }
 
-    // Barista actions
     public List<String> getOrders() {
         return new ArrayList<>(orders);
     }
 
     public void advanceStatus(String order) {
+        // status tracking can be added later
         notifyObservers();
     }
 
