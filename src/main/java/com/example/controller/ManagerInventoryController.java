@@ -1,18 +1,37 @@
 package com.example.controller;
 
-import com.example.model.InventoryModel;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import com.example.model.Inventory;
 import com.example.model.Observer;
 
 public class ManagerInventoryController implements Observer {
 
-    private InventoryModel inventoryModel;
+    @FXML
+    private TableView<String> inventoryTable;
 
-    public ManagerInventoryController(){}
+    @FXML
+    private TextField amountField;
+
+    private final Inventory inventory;
+
+    public ManagerInventoryController() {
+        inventory = Inventory.getInstance();
+        inventory.registerObserver(this);
+    }
 
     @Override
     public void update() {
-        // refresh table
+        inventoryTable.getItems().setAll(inventory.getAllItems());
     }
 
-    public void handleRestock(){}
+    @FXML
+    public void handleRestock() {
+        String item = inventoryTable.getSelectionModel().getSelectedItem();
+        if (item != null && !amountField.getText().isEmpty()) {
+            int amount = Integer.parseInt(amountField.getText());
+            inventory.restock(item, amount);
+        }
+    }
 }
