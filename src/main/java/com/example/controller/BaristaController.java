@@ -10,7 +10,7 @@ public class BaristaController implements Observer {
     @FXML
     private ListView<String> orderList;
 
-    private OrderQueue orderQueue;
+    private final OrderQueue orderQueue;
 
     public BaristaController() {
         orderQueue = OrderQueue.getInstance();
@@ -22,6 +22,7 @@ public class BaristaController implements Observer {
         orderList.getItems().setAll(orderQueue.getOrders());
     }
 
+    @FXML
     public void handleStatusChange() {
         String order = orderList.getSelectionModel().getSelectedItem();
         if (order != null) {
@@ -29,6 +30,7 @@ public class BaristaController implements Observer {
         }
     }
 
+    @FXML
     public void handleCompleteOrder() {
         String order = orderList.getSelectionModel().getSelectedItem();
         if (order != null) {
