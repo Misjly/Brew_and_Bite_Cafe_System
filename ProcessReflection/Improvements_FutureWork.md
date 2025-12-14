@@ -1,0 +1,6 @@
+# Improvements & Future Work
+If there was more time to design and develop this project we'd spend more time figuring out which design patterns we need to implement for the application to be as readable, robust, flexible, and scalable as possible. 
+* One of the possible alterations is implementation of the Decorator pattern. It would take CustomizationOption class and BeverageSize enum with Beverage class to implement the base version of it. It's also possible to change how Pastry class interacts with its variant attribute this way.
+* In the wireframe there is a concept of a choice of what consumable with what customizations will be applied to the order. But the main idea of switches can be too limiting if managers can alter the customizations. Which is why programmatically generated switches is only one way out of this situation. The other one is represented by a table that is being filled by variations.
+---
+The work on this project was very short-lived, and given more time the application could've been perfect with more space for future modifications with no requriements for refactoring of the existing code.
